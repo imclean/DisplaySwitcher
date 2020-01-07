@@ -28,11 +28,11 @@ private let finishTransitionValue = 1.0
     }
     
     open func startInteractiveTransition() {
-        UIApplication.shared.beginIgnoringInteractionEvents()
+        UIApplication.shared.windows.first?.rootViewController?.view.isUserInteractionEnabled = false
         transitionLayout = collectionView.startInteractiveTransition(to: destinationLayout) { success, finish in
             if success && finish {
                 self.collectionView.reloadData()
-                UIApplication.shared.endIgnoringInteractionEvents()
+                UIApplication.shared.windows.first?.rootViewController?.view.isUserInteractionEnabled = true
             }
             } as? TransitionLayout
         transitionLayout.layoutState = layoutState
@@ -46,7 +46,7 @@ fileprivate extension TransitionManager {
     func createUpdaterAndStart() {
         startTime = CACurrentMediaTime()
         updater = CADisplayLink(target: self, selector: #selector(updateTransitionProgress))
-        updater.frameInterval = 1
+        updater.preferredFramesPerSecond = 1
         updater.add(to: RunLoop.current, forMode: .common)
     }
     
