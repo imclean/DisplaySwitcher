@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
     s.author           = "Yalantis"
     s.social_media_url = "https://twitter.com/yalantis"
     
-    s.ios.deployment_target = '8.0'
+    s.ios.deployment_target = '10.0'
 
     s.source           = { :git => "https://github.com/Yalantis/DisplaySwitcher.git", :tag => s.version }
     s.source_files     = 'Pod/Classes/**/*'
